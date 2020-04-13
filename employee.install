@@ -1,0 +1,63 @@
+<?php
+
+/**
+ * Installation Schema for Employee
+ */
+function employee_schema() {
+  $schema['aashan_itonics_employee'] = [
+    'description' => 'Table for storing Employee info.',
+    'fields' => [
+      'id' => [
+        'description' => 'Employee ID',
+        'type' => 'serial',
+        'not null' => true,
+        'unsigned' => true
+      ],
+      'name' => [
+        'description' => 'Employee Name.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => true
+      ],
+      'image' => [
+        'description' => 'Employee Image.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => false,
+        'default' => null
+      ],
+      'address' => [
+        'description' => 'Employee Address.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => true,
+      ],
+      'email' => [
+        'description' => 'Employee Email.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => true,
+        'unique' => true
+      ],
+      'gender' => [
+        'description' => 'Employee Gender.',
+        'type' => 'int',
+        'length' => 1,
+        'default' => 0
+      ],
+      'projects' => [
+        'description' => 'Employee Projects.',
+        'type' => 'text',
+        'not null' => false,
+        'default' => ''
+      ],
+      'remarks' => [
+        'description' => 'Additional Details.',
+        'type' => 'text',
+        'not null' => false,
+        'default' => ''
+      ]
+    ]
+  ];
+  return $schema;
+}
