@@ -1,1 +1,29 @@
 <?php
+
+
+/**
+ * Sets Permissions for Employee Module
+ * @return array
+ */
+function employee_permission() {
+  return [
+    'manage employee' => [
+      'title' => t('Manage Employees (CRUD)'),
+      'description' => t('Create, Edit, View and Delete employees')
+    ]
+  ];
+}
+
+
+/**
+ * Binds routes for employee module using hook_menu()
+ * @return array
+ */
+function employee_menu() {
+  $routes['/employee'] = [
+    'title' => t('Employees'),
+    'page callback' => 'aashan_itonics_get_employee_list'
+  ];
+
+  return $routes;
+}
