@@ -1,5 +1,7 @@
 <?php
 
+define('AASHAN_ITONICS_DB_TABLE', 'aashan_itonics_employee');
+
 include __DIR__ . '/controllers/aashan_itonics_employee_controller.php';
 
 /**
@@ -23,8 +25,18 @@ function employee_permission() {
 function employee_menu() {
   $routes['/employee'] = [
     'title' => t('Employees'),
-    'page callback' => 'aashan_itonics_get_employee_list'
+    'page callback' => 'aashan_itonics_get_employee_list_a'
   ];
 
   return $routes;
+}
+
+
+function employee_theme($existing, $type, $theme, $path) {
+  $theme['aashan_itonics_employee_list'] = [
+    'render element' => 'content',
+    'template' => 'aashan_itonics_employee_list',
+    'path' => drupal_get_path('module', 'employee') . '/templates/'
+  ];
+  return $theme;
 }
