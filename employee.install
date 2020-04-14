@@ -57,7 +57,8 @@ function employee_schema() {
         'not null' => false,
         'default' => ''
       ]
-    ]
+    ],
+    'primary key' => ['id']
   ];
   return $schema;
 }
