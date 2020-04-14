@@ -83,6 +83,29 @@ function aashan_itonics_get_image_validator()
   ];
 }
 
+///**
+// * Validates email during create action
+// * @param $form
+// * @param $form_state
+// */
+//function aashan_itonics_create_employee_form_validate($form, &$form_state) {
+//  if(!filter_var($form_state['input']['email'], FILTER_VALIDATE_EMAIL)) {
+//    drupal_set_message(t('The email field should be a valid email address'), 'error');
+//    drupal_goto('/employee/create');
+//  }
+//}
+//
+///**
+// * Validates email during edit action
+// * @param $form
+// * @param $form_state
+// */
+//function aashan_itonics_edit_employee_form_validate($form, &$form_state) {
+//  if(!filter_var($form_state['input']['email'], FILTER_VALIDATE_EMAIL)) {
+//    drupal_set_message(t('The email field should be a valid email address'), 'error');
+//    drupal_goto('/employee/'. $form_state['input']['employee_id'] . '/edit');
+//  }
+//}
 /**
  * Saves employee on form submit.
  * @param $form
@@ -91,7 +114,7 @@ function aashan_itonics_get_image_validator()
  */
 function aashan_itonics_create_employee_form_submit($form, &$form_state)
 {
-  $data = (object)$form_state['values'];
+  $data = (object)$form_state['input'];
   $values = [
     'name' => $data->name,
     'email' => $data->email,
@@ -176,7 +199,7 @@ function aashan_itonics_edit_employee_form($form, $form_state, $id)
  */
 function aashan_itonics_edit_employee_form_submit($form, &$form_state)
 {
-  $employee_id = $form_state['values']['employee_id'];
+  $employee_id = $form_state['input']['employee_id'];
   $employee = db_select(AASHAN_ITONICS_DB_TABLE)
     ->fields(AASHAN_ITONICS_DB_TABLE)
     ->condition('id', $employee_id)
@@ -188,12 +211,12 @@ function aashan_itonics_edit_employee_form_submit($form, &$form_state)
     return;
   }
   $fields = [
-    'name' => $form_state['values']['name'],
-    'email' => $form_state['values']['email'],
-    'address' => $form_state['values']['address'],
-    'gender' => $form_state['values']['gender'],
-    'projects' => $form_state['values']['projects'],
-    'remarks' => $form_state['values']['remarks']['value']
+    'name' => $form_state['input']['name'],
+    'email' => $form_state['input']['email'],
+    'address' => $form_state['input']['address'],
+    'gender' => $form_state['input']['gender'],
+    'projects' => $form_state['input']['projects'],
+    'remarks' => $form_state['input']['remarks']['value']
   ];
   if (isset($_FILES['files']['name'])) {
     $file = file_save_upload('image', aashan_itonics_get_image_validator(), 'public://');
