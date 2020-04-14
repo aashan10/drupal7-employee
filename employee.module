@@ -27,7 +27,7 @@ function employee_menu() {
     'title' => t('Employees'),
     'description' => t('View Employees'),
     'page callback' => 'aashan_itonics_get_employee_list',
-    'access callback' => true
+    'access callback' => user_access('manage employee')
   ];
 
   $items['employee/create'] = [
@@ -35,7 +35,7 @@ function employee_menu() {
     'description' => t('Create Employees'),
     'page callback' => 'drupal_get_form',
     'page arguments' => ['aashan_itonics_create_employee_form'],
-    'access callback' => true
+    'access callback' => user_access('manage employee')
   ];
 
   $items['employee/%/delete'] = [
@@ -43,7 +43,7 @@ function employee_menu() {
     'description' => t(''),
     'page callback' => 'aashan_itonics_delete_employee',
     'page arguments' => [1],
-    'access callback' => true
+    'access callback' => user_access('manage employee')
   ];
 
   $items['employee/%/edit'] = [
@@ -51,7 +51,7 @@ function employee_menu() {
     'description' => t('Edit Employee'),
     'page callback' => 'drupal_get_form',
     'page arguments' => ['aashan_itonics_edit_employee_form', 1],
-    'access callback' => true
+    'access callback' => user_access('manage employee')
   ];
 
   $items['employee/%'] = [
@@ -59,7 +59,7 @@ function employee_menu() {
     'description' => t('Employee Details'),
     'page callback' => 'aashan_itonics_employee_details',
     'page arguments' => [1],
-    'access callback' => true
+    'access callback' => user_access('manage employee')
   ];
 
   return $items;
