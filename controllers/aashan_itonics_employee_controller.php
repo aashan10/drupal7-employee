@@ -83,29 +83,30 @@ function aashan_itonics_get_image_validator()
   ];
 }
 
-///**
-// * Validates email during create action
-// * @param $form
-// * @param $form_state
-// */
-//function aashan_itonics_create_employee_form_validate($form, &$form_state) {
-//  if(!filter_var($form_state['input']['email'], FILTER_VALIDATE_EMAIL)) {
-//    drupal_set_message(t('The email field should be a valid email address'), 'error');
-//    drupal_goto('/employee/create');
-//  }
-//}
-//
-///**
-// * Validates email during edit action
-// * @param $form
-// * @param $form_state
-// */
-//function aashan_itonics_edit_employee_form_validate($form, &$form_state) {
-//  if(!filter_var($form_state['input']['email'], FILTER_VALIDATE_EMAIL)) {
-//    drupal_set_message(t('The email field should be a valid email address'), 'error');
-//    drupal_goto('/employee/'. $form_state['input']['employee_id'] . '/edit');
-//  }
-//}
+/**
+ * Validates email during create action
+ * @param $form
+ * @param $form_state
+ */
+function aashan_itonics_create_employee_form_validate($form, &$form_state) {
+  if(!filter_var($form_state['input']['email'], FILTER_VALIDATE_EMAIL)) {
+    drupal_set_message(t('The email field should be a valid email address'), 'error');
+    drupal_goto('/employee/create');
+  }
+}
+
+/**
+ * Validates email during edit action
+ * @param $form
+ * @param $form_state
+ */
+function aashan_itonics_edit_employee_form_validate($form, &$form_state) {
+  if(!filter_var($form_state['input']['email'], FILTER_VALIDATE_EMAIL)) {
+    drupal_set_message(t('The email field should be a valid email address'), 'error');
+    drupal_goto('/employee/'. $form_state['input']['employee_id'] . '/edit');
+  }
+}
+
 /**
  * Saves employee on form submit.
  * @param $form
