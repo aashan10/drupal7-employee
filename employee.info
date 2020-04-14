@@ -2,3 +2,4 @@ name = "Employee"
 description = "Employee Management Module"
 core = "7.x"
 version = "1.0.0"
+scripts[] = js/employee.js
