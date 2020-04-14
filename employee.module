@@ -19,23 +19,60 @@ function employee_permission() {
 
 
 /**
- * Binds routes for employee module using hook_menu()
+ * Binds items for employee module using hook_menu()
  * @return array
  */
 function employee_menu() {
-  $routes['/employee'] = [
+  $items['employee'] = [
     'title' => t('Employees'),
-    'page callback' => 'aashan_itonics_get_employee_list_a'
+    'description' => t('View Employees'),
+    'page callback' => 'aashan_itonics_get_employee_list',
+    'access callback' => true
   ];
 
-  return $routes;
+  $items['employee/create'] = [
+    'title' => t('Create Employee'),
+    'description' => t('Create Employees'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => ['aashan_itonics_create_employee_form'],
+    'access callback' => true
+  ];
+
+  $items['employee/%/delete'] = [
+    'title' => t(''),
+    'description' => t(''),
+    'page callback' => 'aashan_itonics_delete_employee',
+    'page arguments' => [1],
+    'access callback' => true
+  ];
+
+  $items['employee/%/edit'] = [
+    'title' => t('Edit Employee'),
+    'description' => t('Edit Employee'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => ['aashan_itonics_edit_employee_form', 1],
+    'access callback' => true
+  ];
+
+  $items['employee/%'] = [
+    'title' => t('Employee Details'),
+    'description' => t('Employee Details'),
+    'page callback' => 'aashan_itonics_employee_details',
+    'page arguments' => [1],
+    'access callback' => true
+  ];
+
+  return $items;
 }
 
 
-function employee_theme($existing, $type, $theme, $path) {
+function employee_theme() {
   $theme['aashan_itonics_employee_list'] = [
-    'render element' => 'content',
     'template' => 'aashan_itonics_employee_list',
+    'path' => drupal_get_path('module', 'employee') . '/templates/'
+  ];
+  $theme['aashan_itonics_employee_view'] = [
+    'template' => 'aashan_itonics_employee_view',
     'path' => drupal_get_path('module', 'employee') . '/templates/'
   ];
   return $theme;
