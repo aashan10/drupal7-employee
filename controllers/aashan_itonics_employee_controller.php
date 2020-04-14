@@ -100,9 +100,11 @@ function aashan_itonics_create_employee_form_submit($form, &$form_state)
     'projects' => $data->projects,
     'remarks' => $data->remarks['value'],
   ];
-  $is_uploaded = file_save_upload('image', aashan_itonics_get_image_validator(), 'public://');
-  if($is_uploaded && property_exists($is_uploaded, 'filename')) {
-    $values['image'] = $is_uploaded->filename;
+  if(isset($_FILES['file']['name'])) {
+    $is_uploaded = file_save_upload('image', aashan_itonics_get_image_validator(), 'public://');
+    if($is_uploaded && property_exists($is_uploaded, 'filename')) {
+      $values['image'] = $is_uploaded->filename;
+    }
   }
   db_insert(AASHAN_ITONICS_DB_TABLE)->fields($values)->execute();
   drupal_set_message(t('The Employee was created successfully!'));
